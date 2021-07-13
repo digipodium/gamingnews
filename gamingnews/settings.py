@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     "crispy_bootstrap5",
     "django.contrib.humanize",
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -119,3 +122,11 @@ LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "index"
 
 LOGIN_URL = "login"
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend", # normal email login
+    "social_core.backends.github.GithubOAuth2", # login with github
+)
+
+SOCIAL_AUTH_GITHUB_KEY ="3c24bb91296e24d888c8"
+SOCIAL_AUTH_GITHUB_SECRET ="bdbd99e53215f17ebb8e67df918c6f64cb1a3d05"

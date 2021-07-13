@@ -208,6 +208,7 @@
                 <h2>Log In</h2>
                 <p>login here using your username and password</p>
             </header>
+            <a class="btn btn-dark text-light" href="{% url 'social:begin' 'github' %}" role="button">login with Github</a>
             <br>
             <div>
                 {% csrf_token %}
