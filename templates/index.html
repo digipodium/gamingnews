@@ -1,0 +1,57 @@
+{% extends 'layout/base.html' %}
+
+{% block css %}
+    
+{% endblock css %}
+    
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <form autocomplete="off">
+                <div class="form-group">
+                
+                  <input type="search"
+                      class="form-control form-control-lg" name="q" id="q" aria-describedby="helpId" placeholder="search..">
+                </div>
+            </form>
+        </div>
+        <div class="col-12" id="results">
+
+        </div>
+    </div>
+</div>
+    
+{% endblock content %}
+
+{% block js %}
+    <script>
+        var querybox = document.querySelector('#q')
+        querybox.addEventListener('input', function() {
+            var query = this.value.trim()
+            console.log(query)
+            if (query.length > 0) {
+                var  html =''
+                fetch('/search/api/?q=' + query)
+                .then(function(response) {
+                    results = response.json()
+                    results.then(function(json){
+                        for (var i = 0; i < json.length; i++) {
+                            var result = json[i]
+                            html += '<div class="card">'
+                            html += '<div class="card-body">'
+                            html += '<p class="card-title">' + result.fields.title + '</p>'
+                            html += '</div>'
+                            html += '</div>'
+                        }
+                        document.querySelector('#results').innerHTML = html
+                    });
+                }).catch(function(error) {
+                    console.log(error)
+                });
+            }
+        });
+    </script>
+{% endblock js %}
+    

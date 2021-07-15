@@ -6,4 +6,5 @@ urlpatterns = [
     path('dashboard/',views.dashboard, name='dashboard'), # auth'd user dashboard
     path('register/',views.register, name='register'), # register a new user
     path('oauth/',include("social_django.urls")), 
+    path('search/api/',views.search, name='search'), # search for a news
 ]
