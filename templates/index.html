@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <form autocomplete="off">
+            <form autocomplete="off" m-3>
                 <div class="form-group">
                 
                   <input type="search"
@@ -39,11 +39,8 @@
                     results.then(function(json){
                         for (var i = 0; i < json.length; i++) {
                             var result = json[i]
-                            html += '<div class="card">'
-                            html += '<div class="card-body">'
+                            console.log(result)
                             html += '<p class="card-title">' + result.fields.title + '</p>'
-                            html += '</div>'
-                            html += '</div>'
                         }
                         document.querySelector('#results').innerHTML = html
                     });

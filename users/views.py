@@ -32,12 +32,11 @@ def register(request):
     return render(request, 'registration/register.html',ctx)
 
 def search(request):
-    if request.method == "GET":
-        query = request.GET.get('q')
-        if query:
-            results = News.objects.filter(title__icontains=query)
-            if len(results)>0:
-                qlist = serializers.serialize('json', results)
-                return HttpResponse(qlist, content_type="text/json")
-    return HttpResponse("No result")
+    query = request.GET.get('q')
+    if query:
+        results = News.objects.filter(title__icontains=query)
+        if len(results)>0:
+            qlist = serializers.serialize('json', results)
+            return HttpResponse(qlist, content_type="text/json")
+    return HttpResponse("{}",content_type='text/json')
 
